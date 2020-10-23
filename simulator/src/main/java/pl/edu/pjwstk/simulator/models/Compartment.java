@@ -1,27 +1,38 @@
 package pl.edu.pjwstk.simulator.models;
 
+import java.util.ArrayList;
+
 public class Compartment {
-    boolean full;
     int size;
+    ArrayList<Integer> targetStation = new ArrayList<>();
 
     public Compartment(int size) {
-        this.full = false;
         this.size = size;
     }
 
     public boolean isFull() {
-        return full;
+        return targetStation.size() == size;
     }
 
-    public void setFull(boolean full) {
-        this.full = full;
+    public int getNumberOfPassengers(){
+        return targetStation.size();
     }
 
-    public int getSize() {
-        return size;
+    public ArrayList<Integer> getPassengers(){
+        return targetStation;
     }
 
-    public void setSize(int size) {
-        this.size = size;
+    public ArrayList<Integer> addPassengers(ArrayList<Integer> passengers){
+        while(!isFull() & !passengers.isEmpty()){
+            targetStation.add(passengers.get(0));
+            passengers.remove(0);
+        }
+        return passengers;
+    }
+
+    public void removePassengers(int station) {
+        while (targetStation.contains(station)) {
+            targetStation.remove(targetStation.indexOf(station));
+        }
     }
 }

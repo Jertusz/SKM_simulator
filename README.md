@@ -25,3 +25,17 @@ symulator SKM:
 
 Dodatkowo:
 - kazdy czlowiek ma miec losowe imie i nazwisko, klient powinien moc dopytac symulator o informacje o przedziale i w odpowiedzi otrzymac informacje o pasazerach
+
+
+#   Documentation
+##  Train
+###  Variables
+- **id**
+- **currentStation**
+- **direction** - (Random boolean on creation, for true simulation), true goes to 15, false goes to 0
+- **cooldown** - Is set to 2, when reaching 15 or 0
+
+### Methods
+- **createCompartments** - Populates the train with compartments from config file
+- **addPassengers/removePassengers** - Adds or removes passengers from compartments based on station
+- **move** - Check for cooldown, if not moves train by one square in the current direction, changes the direction if 0 || 15

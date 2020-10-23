@@ -3,13 +3,12 @@ package pl.edu.pjwstk.simulator.models;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
 public class SimulatorGetPropertyValues {
-    Map<String, Integer> result = new HashMap<String, Integer>();
+    Map<String, Integer> result = new HashMap<>();
     InputStream inputStream;
     public Map<String, Integer> getPropValues() throws IOException {
         try {
