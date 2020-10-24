@@ -5,20 +5,20 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Train {
-    SimulatorGetPropertyValues properties = new SimulatorGetPropertyValues();
     int id;
     Station currentStation;
     int station;
     boolean direction = new Random().nextBoolean();   //True if going to 15, false if going to 0
     int cooldown;
+    int fillPercentage;
     HashMap<Integer, Compartment> compartments = new HashMap<>();
 
-    public Train(int id) throws IOException {
-        createCompartments(properties.getPropValues().get("compartments"));
-        int station = ThreadLocalRandom.current().nextInt(0, 15);
-        currentStation = Station.VALUES.get(station);
+    public Train(int id, int compartments, int compartments_size) {
+        createCompartments(compartments, compartments_size);
+        this.station = ThreadLocalRandom.current().nextInt(0, 15);
+        this.currentStation = Station.VALUES.get(station);
         checkDirection();
-        cooldown=0;
+        this.cooldown=0;
         this.id = id;
     }
 
@@ -30,9 +30,25 @@ public class Train {
         return station;
     }
 
-    private void createCompartments(Integer numberOfCompartments) throws IOException {
+    public int getId() {
+        return id;
+    }
+
+    public HashMap<Integer, Compartment> getCompartments() {
+        return compartments;
+    }
+
+    public void setCurrentStation(Station currentStation) {
+        this.currentStation = currentStation;
+    }
+
+    public int getFillPercentage() {
+        return fillPercentage;
+    }
+
+    private void createCompartments(int numberOfCompartments, int size) {
         for (int i=0; i<numberOfCompartments; i++) {
-            this.compartments.put(i, new Compartment(properties.getPropValues().get("compartment_size")));
+            this.compartments.put(i, new Compartment(size));
         }
     }
 
@@ -44,16 +60,8 @@ public class Train {
         this.direction = direction;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public void setId(int id) {
         this.id = id;
-    }
-
-    public HashMap<Integer, Compartment> getCompartments() {
-        return compartments;
     }
 
     public void addPassengers(ArrayList<Station> passengers){
@@ -62,6 +70,7 @@ public class Train {
             passengers = compartments.get(compartmentId).addPassengers(passengers);
             compartmentId += 1;
         }
+        setFillPercentage();
     }
 
     public void removePassengers(){
@@ -86,12 +95,22 @@ public class Train {
     }
 
     public void checkDirection(){   // Check if it's the end of road, true changes direction, adds cooldown
-        if(station==14){
+        if(getStation()==14){
             setDirection(false);
-            cooldown = 2;
-        } else if (station==0){
+            this.cooldown = 2;
+        } else if (getStation()==0){
             setDirection(true);
-            cooldown = 2;
+            this.cooldown = 2;
         }
+    }
+
+    public void setFillPercentage() {
+        double totalPassengers = 0;
+        for(Compartment compartment: this.compartments.values()) {
+            totalPassengers += compartment.getNumberOfPassengers();
+        }
+        double totalSize = this.compartments.get(0).getSize();
+        totalSize = totalSize * this.compartments.size();
+        this.fillPercentage = (int) ((totalPassengers/totalSize)*100);
     }
 }

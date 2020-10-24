@@ -12,8 +12,8 @@ import java.util.Arrays;
 public class TrainTests {
     private static Train train;
     @BeforeClass
-    public static void init() throws IOException {
-        train = new Train(0);
+    public static void init() {
+        train = new Train(0, 5, 7);
     }
 
     @Test

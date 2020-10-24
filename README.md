@@ -19,7 +19,7 @@ symulator SKM:
   - wystawic endpointy dla klienta
 - klient ma miec mozliwosc odpytania symulatora o:
   - ilosc pociagow np:
-	GET api:8080/pociagi - i otrzymac w odpowiedzi JSONa z danymi pociagow: w tym przypadku tylko numer identyfikacyjny
+	GET api:8080/pociagi - i otrzymac w odpowiedzi JSONa z danymi pociagow: w tym przypadku tylko numer identyfikacyjny :heavy_check_mark:
   - stan pociagu np:
         GET api:8080/pociagi/1234 - otrzymac w odpowiedzi JSONa z danymi pociagu o id 1234: numer id, procentowe zapelnienie przedzialow, ilosc osob
 

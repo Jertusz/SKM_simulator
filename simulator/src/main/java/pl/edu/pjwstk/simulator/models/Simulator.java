@@ -15,8 +15,9 @@ public class Simulator {
     }
 
     private void createTrains() throws IOException {
+
         for (int i = 0; i < train_count; i++) {
-            trains.add(new Train(i));
+            trains.add(new Train(i, properties.getPropValues().get("compartments"), properties.getPropValues().get("compartment_size")));
         }
     }
 
@@ -46,4 +47,7 @@ public class Simulator {
         }
     }
 
+    public ArrayList<Train> getTrains() {
+        return trains;
+    }
 }

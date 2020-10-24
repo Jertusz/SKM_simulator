@@ -22,6 +22,9 @@ public class Compartment {
         return targetStation;
     }
 
+    public int getSize() {
+        return size;
+    }
     public ArrayList<Station> addPassengers(ArrayList<Station> passengers){
         while(!isFull() & !passengers.isEmpty()){
             targetStation.add(passengers.get(0));
