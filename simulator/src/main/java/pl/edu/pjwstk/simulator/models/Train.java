@@ -1,29 +1,33 @@
 package pl.edu.pjwstk.simulator.models;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Train {
     SimulatorGetPropertyValues properties = new SimulatorGetPropertyValues();
     int id;
-    int currentStation;
+    Station currentStation;
+    int station;
     boolean direction = new Random().nextBoolean();   //True if going to 15, false if going to 0
     int cooldown;
     HashMap<Integer, Compartment> compartments = new HashMap<>();
 
     public Train(int id) throws IOException {
         createCompartments(properties.getPropValues().get("compartments"));
-        this.currentStation = ThreadLocalRandom.current().nextInt(0, 16);
+        int station = ThreadLocalRandom.current().nextInt(0, 15);
+        currentStation = Station.VALUES.get(station);
         checkDirection();
         cooldown=0;
         this.id = id;
     }
 
-    public int getCurrentStation() {
+    public Station getCurrentStation() {
         return currentStation;
+    }
+
+    public int getStation() {
+        return station;
     }
 
     private void createCompartments(Integer numberOfCompartments) throws IOException {
@@ -52,7 +56,7 @@ public class Train {
         return compartments;
     }
 
-    public void addPassengers(ArrayList<Integer> passengers){
+    public void addPassengers(ArrayList<Station> passengers){
         int compartmentId = 0;
         while (!passengers.isEmpty() & compartmentId<compartments.size()-1){
             passengers = compartments.get(compartmentId).addPassengers(passengers);
@@ -69,10 +73,11 @@ public class Train {
     public void move(){  // Moves the train by one square
         if(cooldown == 0){
             if(whatDirection()){    // Check the direction to go
-                currentStation += 1;
+                station += 1;
             } else {
-                currentStation -= 1;
+                station -= 1;
             }
+            currentStation = Station.VALUES.get(station);
             checkDirection();
             removePassengers();
         } else {
@@ -81,8 +86,11 @@ public class Train {
     }
 
     public void checkDirection(){   // Check if it's the end of road, true changes direction, adds cooldown
-        if(currentStation==15 || currentStation==0){
-            setDirection(!direction);
+        if(station==14){
+            setDirection(false);
+            cooldown = 2;
+        } else if (station==0){
+            setDirection(true);
             cooldown = 2;
         }
     }

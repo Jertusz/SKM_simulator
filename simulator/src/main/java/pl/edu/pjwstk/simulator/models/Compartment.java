@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Compartment {
     int size;
-    ArrayList<Integer> targetStation = new ArrayList<>();
+    ArrayList<Station> targetStation = new ArrayList<>();
 
     public Compartment(int size) {
         this.size = size;
@@ -18,11 +18,11 @@ public class Compartment {
         return targetStation.size();
     }
 
-    public ArrayList<Integer> getPassengers(){
+    public ArrayList<Station> getPassengers(){
         return targetStation;
     }
 
-    public ArrayList<Integer> addPassengers(ArrayList<Integer> passengers){
+    public ArrayList<Station> addPassengers(ArrayList<Station> passengers){
         while(!isFull() & !passengers.isEmpty()){
             targetStation.add(passengers.get(0));
             passengers.remove(0);
@@ -30,7 +30,7 @@ public class Compartment {
         return passengers;
     }
 
-    public void removePassengers(int station) {
+    public void removePassengers(Station station) {
         while (targetStation.contains(station)) {
             targetStation.remove(targetStation.indexOf(station));
         }

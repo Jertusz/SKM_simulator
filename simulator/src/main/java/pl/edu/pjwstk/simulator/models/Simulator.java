@@ -20,11 +20,11 @@ public class Simulator {
         }
     }
 
-    private ArrayList<Integer> addPassengers() {
+    private ArrayList<Station> addPassengers() {
         int numOfPassengers = ThreadLocalRandom.current().nextInt(2, 9);
-        ArrayList<Integer> passengers = new ArrayList<>();
+        ArrayList<Station> passengers = new ArrayList<>();
         for (int i = 0; i < numOfPassengers; i++) {
-            passengers.add(ThreadLocalRandom.current().nextInt(0,16));
+            passengers.add(Station.VALUES.get(ThreadLocalRandom.current().nextInt(0,14)));
         }
         return passengers;
     }
@@ -39,7 +39,7 @@ public class Simulator {
 
     public void describeState() {
         for (Train train: trains) {
-            System.out.printf("~~~~~~~Id:%d~~~~%d~~~~~~~~~~~~~%n", train.getId(), train.getCurrentStation());
+            System.out.printf("~~~~~~~Id:%d~~~~%S~~~~~~~~~~~~~%n", train.getId(), train.getCurrentStation());
             for (int j = 0; j < train.getCompartments().size()-1; j++) {
                 System.out.println(train.getCompartments().get(j).getPassengers());
             }
