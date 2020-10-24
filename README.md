@@ -6,7 +6,7 @@ symulator SKM:
 
 - Gradle, Docker, Git
 - dwie aplikacje: symulator i klient
-- wszystkie stacje od GDYNIA GLOWNA do GDANSK GLOWNY (powinno ich byc ok 15)
+- wszystkie stacje od GDYNIA GLOWNA do GDANSK GLOWNY (powinno ich byc ok 15) :heavy_check_mark: 
 - dystans miedzy stacjami uznajemy za jednakowy :heavy_check_mark: ustawiony na jeden
 - bedzie naraz jezdzilo X pociagow, kazdy pociag ma miec Y przedzialow, kazdy przedzial - pomiesci Z osob :heavy_check_mark:
 - X,Y,Z ladujemy z pliku konfiguracyjnego :heavy_check_mark:
