@@ -1,6 +1,5 @@
 package pl.edu.pjwstk.simulator.models;
 
-import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 

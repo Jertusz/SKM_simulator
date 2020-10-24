@@ -5,7 +5,6 @@ import org.junit.Test;
 import pl.edu.pjwstk.simulator.models.Station;
 import pl.edu.pjwstk.simulator.models.Train;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
