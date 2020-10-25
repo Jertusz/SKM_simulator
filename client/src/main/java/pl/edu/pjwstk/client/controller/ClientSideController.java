@@ -19,8 +19,14 @@ public class ClientSideController {
     }
 
     @GetMapping("/trains/{id}")
-    public ResponseEntity getTrains(@PathVariable int id) {
+    public ResponseEntity getTrains(@PathVariable("id") int id) {
         RestTemplate template = new RestTemplate();
         return template.getForEntity(trainsList + '/' + id, String.class);
+    }
+
+    @GetMapping("/trains/{id}/{compartment}")
+    public ResponseEntity getTrains(@PathVariable("id") int id, @PathVariable("compartment") int compartment) {
+        RestTemplate template = new RestTemplate();
+        return template.getForEntity(trainsList + '/' + id + '/' + compartment, String.class);
     }
 }

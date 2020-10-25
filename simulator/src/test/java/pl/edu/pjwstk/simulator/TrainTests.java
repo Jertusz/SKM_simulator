@@ -2,11 +2,10 @@ package pl.edu.pjwstk.simulator;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import pl.edu.pjwstk.simulator.models.Station;
+import pl.edu.pjwstk.simulator.models.Passenger;
 import pl.edu.pjwstk.simulator.models.Train;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class TrainTests {
     private static Train train;
@@ -24,7 +23,10 @@ public class TrainTests {
 
     @Test
     public void exampleRoute() {
-        ArrayList<Station> passengers = new ArrayList<>(Arrays.asList(Station.GDANSK_OLIWA, Station.GDANSK_OLIWA, Station.GDANSK_STOCZNIA, Station.GDANSK_STOCZNIA, Station.GDYNIA_GLOWNA, Station.GDYNIA_ORLOWO, Station.GDYNIA_WZGORZE_SW_MAKSYMILIANA, Station.GDYNIA_WZGORZE_SW_MAKSYMILIANA, Station.GDANSK_WRZESZCZ));
+        ArrayList<Passenger> passengers = new ArrayList<>();
+        for (int i = 0; i < 12; i++) {
+            passengers.add(new Passenger());
+        }
         train.addPassengers(passengers);
         for (int i = 0; i < 45; i++) {
             train.move();

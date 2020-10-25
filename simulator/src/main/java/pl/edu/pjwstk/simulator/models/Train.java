@@ -63,13 +63,14 @@ public class Train {
         this.id = id;
     }
 
-    public void addPassengers(ArrayList<Station> passengers) {
+    public ArrayList<Passenger> addPassengers(ArrayList<Passenger> passengers) {
         int compartmentId = 0;
         while (!passengers.isEmpty() & compartmentId < compartments.size() - 1) {
             passengers = compartments.get(compartmentId).addPassengers(passengers);
             compartmentId += 1;
         }
         setFillPercentage();
+        return passengers;
     }
 
     public void removePassengers() {
@@ -104,12 +105,17 @@ public class Train {
     }
 
     public void setFillPercentage() {
-        double totalPassengers = 0;
+        double totalSize = this.compartments.get(0).getSize();
+        totalSize = totalSize * this.compartments.size();
+        this.fillPercentage = (int) ((getTotalPassengers() / totalSize) * 100);
+    }
+
+    public int getTotalPassengers() {
+        int totalPassengers = 0;
         for (Compartment compartment : this.compartments.values()) {
             totalPassengers += compartment.getNumberOfPassengers();
         }
-        double totalSize = this.compartments.get(0).getSize();
-        totalSize = totalSize * this.compartments.size();
-        this.fillPercentage = (int) ((totalPassengers / totalSize) * 100);
+        return totalPassengers;
+
     }
 }

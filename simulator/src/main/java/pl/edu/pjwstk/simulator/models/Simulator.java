@@ -21,11 +21,11 @@ public class Simulator {
         }
     }
 
-    private ArrayList<Station> addPassengers() {
+    private ArrayList<Passenger> addPassengers() {
         int numOfPassengers = ThreadLocalRandom.current().nextInt(2, 9);
-        ArrayList<Station> passengers = new ArrayList<>();
+        ArrayList<Passenger> passengers = new ArrayList<>();
         for (int i = 0; i < numOfPassengers; i++) {
-            passengers.add(Station.VALUES.get(ThreadLocalRandom.current().nextInt(0, 14)));
+            passengers.add(new Passenger());
         }
         return passengers;
     }
