@@ -21,6 +21,6 @@ public class ClientSideController {
     @GetMapping("/trains/{id}")
     public ResponseEntity getTrains(@PathVariable int id) {
         RestTemplate template = new RestTemplate();
-        return template.getForEntity(trainsList+'/'+id, String.class);
+        return template.getForEntity(trainsList + '/' + id, String.class);
     }
 }

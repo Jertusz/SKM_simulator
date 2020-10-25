@@ -17,7 +17,7 @@ public class Train {
         this.station = ThreadLocalRandom.current().nextInt(0, 15);
         this.currentStation = Station.VALUES.get(station);
         checkDirection();
-        this.cooldown=0;
+        this.cooldown = 0;
         this.id = id;
     }
 
@@ -46,7 +46,7 @@ public class Train {
     }
 
     private void createCompartments(int numberOfCompartments, int size) {
-        for (int i=0; i<numberOfCompartments; i++) {
+        for (int i = 0; i < numberOfCompartments; i++) {
             this.compartments.put(i, new Compartment(size));
         }
     }
@@ -63,24 +63,24 @@ public class Train {
         this.id = id;
     }
 
-    public void addPassengers(ArrayList<Station> passengers){
+    public void addPassengers(ArrayList<Station> passengers) {
         int compartmentId = 0;
-        while (!passengers.isEmpty() & compartmentId<compartments.size()-1){
+        while (!passengers.isEmpty() & compartmentId < compartments.size() - 1) {
             passengers = compartments.get(compartmentId).addPassengers(passengers);
             compartmentId += 1;
         }
         setFillPercentage();
     }
 
-    public void removePassengers(){
+    public void removePassengers() {
         for (int i = 0; i < compartments.size(); i++) {
             compartments.get(i).removePassengers(getCurrentStation());
         }
     }
 
-    public void move(){  // Moves the train by one square
-        if(cooldown == 0){
-            if(whatDirection()){    // Check the direction to go
+    public void move() {  // Moves the train by one square
+        if (cooldown == 0) {
+            if (whatDirection()) {    // Check the direction to go
                 station += 1;
             } else {
                 station -= 1;
@@ -93,11 +93,11 @@ public class Train {
         }
     }
 
-    public void checkDirection(){   // Check if it's the end of road, true changes direction, adds cooldown
-        if(getStation()==14){
+    public void checkDirection() {   // Check if it's the end of road, true changes direction, adds cooldown
+        if (getStation() == 14) {
             setDirection(false);
             this.cooldown = 2;
-        } else if (getStation()==0){
+        } else if (getStation() == 0) {
             setDirection(true);
             this.cooldown = 2;
         }
@@ -105,11 +105,11 @@ public class Train {
 
     public void setFillPercentage() {
         double totalPassengers = 0;
-        for(Compartment compartment: this.compartments.values()) {
+        for (Compartment compartment : this.compartments.values()) {
             totalPassengers += compartment.getNumberOfPassengers();
         }
         double totalSize = this.compartments.get(0).getSize();
         totalSize = totalSize * this.compartments.size();
-        this.fillPercentage = (int) ((totalPassengers/totalSize)*100);
+        this.fillPercentage = (int) ((totalPassengers / totalSize) * 100);
     }
 }

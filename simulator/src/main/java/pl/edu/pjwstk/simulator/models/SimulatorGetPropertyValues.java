@@ -12,6 +12,7 @@ public class SimulatorGetPropertyValues {
     int train_count;
     int compartments;
     int compartmentSize;
+
     public Map<String, Integer> getPropValues() throws IOException {
         try {
             Properties prop = new Properties();
@@ -19,7 +20,7 @@ public class SimulatorGetPropertyValues {
 
             inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
 
-            if (inputStream!=null) {
+            if (inputStream != null) {
                 prop.load(inputStream);
                 train_count = Integer.parseInt(prop.getProperty("train_count"));
                 compartments = Integer.parseInt(prop.getProperty("compartments"));

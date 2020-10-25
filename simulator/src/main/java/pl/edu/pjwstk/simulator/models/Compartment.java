@@ -14,19 +14,20 @@ public class Compartment {
         return targetStation.size() == size;
     }
 
-    public int getNumberOfPassengers(){
+    public int getNumberOfPassengers() {
         return targetStation.size();
     }
 
-    public ArrayList<Station> getPassengers(){
+    public ArrayList<Station> getPassengers() {
         return targetStation;
     }
 
     public int getSize() {
         return size;
     }
-    public ArrayList<Station> addPassengers(ArrayList<Station> passengers){
-        while(!isFull() & !passengers.isEmpty()){
+
+    public ArrayList<Station> addPassengers(ArrayList<Station> passengers) {
+        while (!isFull() & !passengers.isEmpty()) {
             targetStation.add(passengers.get(0));
             passengers.remove(0);
         }

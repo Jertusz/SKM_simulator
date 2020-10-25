@@ -24,5 +24,4 @@ public enum Station {
 
     public static final List<Station> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
 
-
-    }
+}

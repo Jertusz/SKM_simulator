@@ -10,6 +10,7 @@ import java.util.Arrays;
 
 public class TrainTests {
     private static Train train;
+
     @BeforeClass
     public static void init() {
         train = new Train(0, 5, 7);
@@ -28,7 +29,7 @@ public class TrainTests {
         for (int i = 0; i < 45; i++) {
             train.move();
             System.out.println(train.getCurrentStation());
-            for (int j = 0; j < train.getCompartments().size()-1; j++) {
+            for (int j = 0; j < train.getCompartments().size() - 1; j++) {
                 System.out.println(train.getCompartments().get(j).getPassengers());
             }
         }
