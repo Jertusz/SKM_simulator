@@ -1,7 +1,9 @@
 package pl.edu.pjwstk.simulator.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.edu.pjwstk.simulator.models.Train;
+import org.springframework.stereotype.Repository;
+import pl.edu.pjwstk.simulator.models.Compartment;
 
-public interface TrainRepository extends JpaRepository<Train, Integer> {
+@Repository
+public interface CompartmentRepository extends JpaRepository<Compartment, Long> {
 }

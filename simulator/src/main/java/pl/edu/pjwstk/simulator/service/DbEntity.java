@@ -1,2 +1,5 @@
-package pl.edu.pjwstk.simulator.service;public interface DbEntity {
+package pl.edu.pjwstk.simulator.service;
+
+public interface DbEntity {
+    Long getId();
 }
