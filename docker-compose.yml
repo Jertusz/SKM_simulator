@@ -4,11 +4,16 @@ services:
     build: ./simulator
     ports:
       - "9000:9000"
+    restart: on-failure:5
+    depends_on:
+      - traindb
   client:
     build: ./client
     ports:
       - "8080:8080"
-  cardb:
+    depends_on:
+      - simulator
+  traindb:
     build: ./db
     ports:
       - "3306:3306"
