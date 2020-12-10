@@ -25,3 +25,17 @@ symulator SKM:
 
 Dodatkowo:
 - kazdy czlowiek ma miec losowe imie i nazwisko, klient powinien moc dopytac symulator o informacje o przedziale i w odpowiedzi otrzymac informacje o pasazerach :heavy_check_mark: Przedzialy numerowane od 0
+
+
+Czesc druga:
+Przerobic nasz symulator SKM tak, by:
+  - pociagi i przedzialy pochodzily z bazy danych (pociagi moga teraz miec rozna ilosc przedzialow, kazdy przedzial moze miec rozna pojemnosc),
+    konfiguracja poczatkowa jest dowolna (przyklad - po jednym pociagu w Gdyni i w Gdansku, kazdy pociag inna ilosc przedzialow, zaczynaja puste),
+  - Controllery do CRUD'a dla pociagu i przedzialu (Create, Read, Update, Delete),
+  - wykorzystac liquibase do zainicjalizowania i obslugi zmian w schemie bazodanowej,
+  - Controller powinien teraz uzywac ResponseEntity do komunikacji zwrotnej + odpowiednie HttpStatus (prosta obsluga bledow -> blad = kod 500),
+  - pociagi powinny dalej jezdzic, ladowac i rozladowywac ludzi, robic postoje, zawracac na stacjach koncowych.
+  - testy!!!!!!!!!
+
+termin oddania pracy: 22.12.2020*
+ilosc punktow do zdobycia: 10 + 2*
