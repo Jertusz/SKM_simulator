@@ -2,6 +2,8 @@ databaseChangeLog:
   - include:
       file: db/changelog/table/init-tables.yml
   - include:
-      file: db/changelog/data/init-data-insert-cars.yml
+      file: db/changelog/data/init-data-insert-stations.yml
   - include:
-      file: db/changelog/data/init-data-insert-addons.yml
+      file: db/changelog/data/init-data-insert-trains.yml
+  - include:
+      file: db/changelog/data/init-data-insert-compartments.yml

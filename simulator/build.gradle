@@ -15,6 +15,7 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'junit:junit:4.12'
+	implementation 'org.liquibase:liquibase-core:4.2.1'
 	testImplementation(
 			'junit:junit:4.12',
 			'org.springframework.boot:spring-boot-starter-test')

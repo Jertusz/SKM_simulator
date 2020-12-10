@@ -8,3 +8,13 @@ services:
     build: ./client
     ports:
       - "8080:8080"
+  cardb:
+    build: ./db
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: pwd
+      MYSQL_DATABASE: traincontrol
+      MYSQL_USER: traincontroller
+      MYSQL_PASSWORD: pwd

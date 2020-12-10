@@ -1,19 +1,27 @@
 databaseChangeLog:
   - changeSet:
       id: 2020_12_10-initial-tables
-      author: jedrzej.bednarczyk
+      author: jedrzej.szadejko
       preConditions:
         - onFail: MARK_RAN
           not:
             tableExists:
-              tableName: cars
+              tableName: trains
         - onFail: MARK_RAN
           not:
             tableExists:
-              tableName: addons
+              tableName: compartments
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: passengers
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: stations
       changes:
         - createTable:
-            tableName: cars
+            tableName: stations
             columns:
               - column:
                   name: id
@@ -22,45 +30,93 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: car_id_pkey
-              - column:
-                  name: production_year
-                  type: VARCHAR(255)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: model
-                  type: VARCHAR(255)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: manufacturer
-                  type: VARCHAR(255)
-        - createTable:
-            tableName: addons
-            columns:
-              - column:
-                  name: id
-                  type: INT
-                  autoIncrement: true
-                  constraints:
-                    nullable: false
-                    primaryKey: true
-                    primaryKeyName: addon_id_pkey
+                    primaryKeyName: station_id_pkey
               - column:
                   name: name
                   type: VARCHAR(255)
                   constraints:
                     nullable: false
+        - createTable:
+            tableName: trains
+            columns:
               - column:
-                  name: price
-                  type: DECIMAL(9,2)
+                  name: id
+                  type: INT
+                  autoIncrement: true
                   constraints:
                     nullable: false
+                    primaryKey: true
+                    primaryKeyName: train_id_pkey
               - column:
-                  name: car_id
+                  name: station
                   type: INT
                   constraints:
                     nullable: false
-                    foreignKeyName: addon_car_id_fkey
-                    references: cars(id)
+                    foreignKeyName: train_station_id_fkey
+                    references: stations(id)
+              - column:
+                  name: direction
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: cooldown
+                  type: INT
+        - createTable:
+            tableName: compartments
+            columns:
+              - column:
+                  name: id
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: compartment_id_pkey
+              - column:
+                  name: train
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: compartment_train_id_fkey
+                    references: trains(id)
+              - column:
+                  name: size
+                  type: INT
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: passengers
+            columns:
+              - column:
+                  name: id
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: passenger_id_pkey
+              - column:
+                  name: compartment
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: passenger_compartment_id_fkey
+                    references: compartments(id)
+              - column:
+                  name: first_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: target_station
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: passenger_station_id_fkey
+                    references: stations(id)
