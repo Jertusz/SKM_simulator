@@ -14,7 +14,7 @@ services:
     depends_on:
       - simulator
   traindb:
-    build: ./db
+    image: mysql:latest
     ports:
       - "3306:3306"
     restart: always
