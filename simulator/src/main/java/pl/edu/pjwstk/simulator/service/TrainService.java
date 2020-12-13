@@ -1,7 +1,6 @@
 package pl.edu.pjwstk.simulator.service;
 
 import org.springframework.stereotype.Service;
-import pl.edu.pjwstk.simulator.models.Station;
 import pl.edu.pjwstk.simulator.models.Train;
 import pl.edu.pjwstk.simulator.repository.CompartmentRepository;
 import pl.edu.pjwstk.simulator.repository.StationRepository;
