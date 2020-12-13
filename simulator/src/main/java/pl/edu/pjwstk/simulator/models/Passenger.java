@@ -13,9 +13,6 @@ public class Passenger implements DbEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    Compartment compartment;
-
     @Column(name = "first_name")
     String firstName;
     @Column(name = "last_name")

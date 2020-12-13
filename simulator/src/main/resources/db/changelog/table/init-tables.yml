@@ -90,13 +90,6 @@ databaseChangeLog:
                     primaryKey: true
                     primaryKeyName: passenger_id_pkey
               - column:
-                  name: compartment
-                  type: INT
-                  constraints:
-                    nullable: false
-                    foreignKeyName: passenger_compartment_id_fkey
-                    references: compartments(id)
-              - column:
                   name: first_name
                   type: VARCHAR(255)
                   constraints:
@@ -121,6 +114,11 @@ databaseChangeLog:
           not:
             tableExists:
               tableName: trains_compartment
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: compartments_passenger
+
       changes:
         - createTable:
             tableName: trains_compartment
@@ -137,5 +135,22 @@ databaseChangeLog:
                   type: INT
                   constraints:
                     nullable: false
-                    foreignKeyName: compartment_id_fkey
+                    foreignKeyName: train_compartment_id_fkey
                     references: compartments(id)
+        - createTable:
+            tableName: compartments_passenger
+            columns:
+              - column:
+                  name: compartment_id
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: passenger_compartment_id_fkey
+                    references: compartments(id)
+              - column:
+                  name: passenger_id
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: compartment_passenger_id_fkey
+                    references: passengers(id)
