@@ -1,8 +1,10 @@
 package pl.edu.pjwstk.simulator.service;
 
 import org.springframework.stereotype.Service;
+import pl.edu.pjwstk.simulator.models.Station;
 import pl.edu.pjwstk.simulator.models.Train;
 import pl.edu.pjwstk.simulator.repository.CompartmentRepository;
+import pl.edu.pjwstk.simulator.repository.StationRepository;
 import pl.edu.pjwstk.simulator.repository.TrainRepository;
 
 import java.util.Optional;
@@ -12,10 +14,12 @@ import static pl.edu.pjwstk.simulator.util.Utils.fallbackIfNull;
 @Service
 public class TrainService extends CrudService<Train>{
     private final CompartmentRepository compartmentRepository;
+    private final StationRepository stationRepository;
 
-    public TrainService(TrainRepository trainRepository, CompartmentRepository compartmentRepository) {
+    public TrainService(TrainRepository trainRepository, CompartmentRepository compartmentRepository, StationRepository stationRepository) {
         super(trainRepository);
         this.compartmentRepository = compartmentRepository;
+        this.stationRepository = stationRepository;
     }
 
     @Override
