@@ -74,13 +74,6 @@ databaseChangeLog:
                     primaryKey: true
                     primaryKeyName: compartment_id_pkey
               - column:
-                  name: train
-                  type: INT
-                  constraints:
-                    nullable: false
-                    foreignKeyName: compartment_train_id_fkey
-                    references: trains(id)
-              - column:
                   name: size
                   type: INT
                   constraints:
@@ -120,3 +113,29 @@ databaseChangeLog:
                     nullable: false
                     foreignKeyName: passenger_station_id_fkey
                     references: stations(id)
+  - changeSet:
+      id: 2020_12_13-compartment-trains-relation
+      author: jedrzej.szadejko
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: trains_compartment
+      changes:
+        - createTable:
+            tableName: trains_compartment
+            columns:
+              - column:
+                  name: train_id
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: train_id_fkey
+                    references: trains(id)
+              - column:
+                  name: compartment_id
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: compartment_id_fkey
+                    references: compartments(id)

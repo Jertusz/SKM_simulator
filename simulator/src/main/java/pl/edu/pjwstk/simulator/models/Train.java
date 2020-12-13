@@ -16,12 +16,17 @@ public class Train implements DbEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "station", referencedColumnName = "id")
     Station station;
+
     @Column(name = "direction")
     int direction = ThreadLocalRandom.current().nextInt(0, 2);   //0 if going to station 15, 1 if going to station 0
+
     @Column(name = "cooldown")
     int cooldown;
 
-    // TODO implement compartments
+    @OneToMany(fetch = FetchType.EAGER)
+    List<Compartment> compartment;
+
+
     public Train() {
 
     }
@@ -53,6 +58,14 @@ public class Train implements DbEntity {
 
     public int getCooldown() {
         return cooldown;
+    }
+
+    public List<Compartment> getCompartmentList() {
+        return compartment;
+    }
+
+    public void setCompartmentList(List<Compartment> compartment) {
+        this.compartment = compartment;
     }
 
     public void setCooldown(int cooldown) {

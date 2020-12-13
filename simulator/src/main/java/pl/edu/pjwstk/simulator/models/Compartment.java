@@ -12,9 +12,7 @@ public class Compartment implements DbEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "train_id")
-    Train train;
+    @Column(name = "size")
     int size;
 //    ArrayList<Passenger> passengers = new ArrayList<>();
 

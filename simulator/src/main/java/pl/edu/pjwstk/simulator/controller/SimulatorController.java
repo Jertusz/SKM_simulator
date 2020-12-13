@@ -29,6 +29,7 @@ public class SimulatorController extends CrudController<Train>{
             payload.put("station", train.getStation().getName());
             payload.put("direction", train.getDirection());
             payload.put("cooldown", train.getCooldown());
+            payload.put("compartments", train.getCompartmentList().stream().map(Compartment::getId));
 
             return payload;
         };
