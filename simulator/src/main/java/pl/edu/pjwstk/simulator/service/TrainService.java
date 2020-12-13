@@ -7,6 +7,8 @@ import pl.edu.pjwstk.simulator.repository.TrainRepository;
 
 import java.util.Optional;
 
+import static pl.edu.pjwstk.simulator.util.Utils.fallbackIfNull;
+
 @Service
 public class TrainService extends CrudService<Train>{
     private final CompartmentRepository compartmentRepository;
@@ -21,12 +23,20 @@ public class TrainService extends CrudService<Train>{
         if (updateEntity.getId() == null) {
             return repository.save(updateEntity);
         }
-//
-//        Optional<Train> trainInDb = repository.findById(updateEntity.getId());
-//
-//        if (trainInDb.isPresent()) {
-//            Train dbEntity = trainInDb.get();
-//        }
-        return null;
+
+        Optional<Train> trainInDb = repository.findById(updateEntity.getId());
+
+        if (trainInDb.isPresent()) {
+            Train dbEntity = trainInDb.get();
+            dbEntity.setStation(fallbackIfNull(updateEntity.getStation(), dbEntity.getStation()));
+            dbEntity.setDirection(fallbackIfNull(updateEntity.getDirection(), dbEntity.getDirection()));
+            dbEntity.setCooldown(fallbackIfNull(updateEntity.getCooldown(), dbEntity.getCooldown()));
+            Train insertedTrain = repository.save(dbEntity);
+
+            return insertedTrain;
+        } else {
+            updateEntity = repository.save(updateEntity);
+            return updateEntity;
+        }
     }
 }

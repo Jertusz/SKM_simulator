@@ -13,7 +13,7 @@ public class Passenger implements DbEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     Compartment compartment;
 
     @Column(name = "first_name")
@@ -21,7 +21,6 @@ public class Passenger implements DbEntity {
     @Column(name = "last_name")
     String lastName;
     @OneToOne(fetch = FetchType.EAGER)
-    @Column(name = "target_station")
     Station targetStation;
 
     public Passenger() {

@@ -12,13 +12,13 @@ public class TrainTests {
 
     @BeforeClass
     public static void init() {
-        train = new Train(0, 5, 7);
+        train = new Train();
     }
 
     @Test
     public void getData() {
-        System.out.println(train.whatDirection());
-        System.out.println(train.getCompartments());
+//        System.out.println(train.whatDirection());
+//        System.out.println(train.getCompartments());
     }
 
     @Test
@@ -27,14 +27,14 @@ public class TrainTests {
         for (int i = 0; i < 12; i++) {
             passengers.add(new Passenger());
         }
-        train.addPassengers(passengers);
-        for (int i = 0; i < 45; i++) {
-            train.move();
-            System.out.println(train.getCurrentStation());
-            for (int j = 0; j < train.getCompartments().size() - 1; j++) {
-                System.out.println(train.getCompartments().get(j).getPassengers());
-            }
-        }
+//        train.addPassengers(passengers);
+//        for (int i = 0; i < 45; i++) {
+//            train.move();
+//            System.out.println(train.getCurrentStation());
+//            for (int j = 0; j < train.getCompartments().size() - 1; j++) {
+//                System.out.println(train.getCompartments().get(j).getPassengers());
+//            }
+//        }
 
     }
 }
