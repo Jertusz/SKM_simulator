@@ -18,7 +18,7 @@ public class Train implements DbEntity {
     Station station;
 
     @Column(name = "direction")
-    int direction = ThreadLocalRandom.current().nextInt(0, 2);   //0 if going to station 15, 1 if going to station 0
+    int direction = ThreadLocalRandom.current().nextInt(0, 2);   //0 if going to station 1, 1 if going to station 15
 
     @Column(name = "cooldown")
     int cooldown;
@@ -72,4 +72,5 @@ public class Train implements DbEntity {
     public void setCooldown(int cooldown) {
         this.cooldown = cooldown;
     }
+
 }

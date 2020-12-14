@@ -1,5 +1,8 @@
 package pl.edu.pjwstk.simulator.models;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import pl.edu.pjwstk.simulator.repository.TrainRepository;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
@@ -19,11 +22,8 @@ public class Simulator {
     }
 
     public void move() {
-//        for (Train train : trains) {
-//            train.addPassengers(addPassengers());
-//            train.move();
-//
-//        }
+        TrainRepository trainRepository = null;
+        trainRepository.findAll();
     }
 
 }
