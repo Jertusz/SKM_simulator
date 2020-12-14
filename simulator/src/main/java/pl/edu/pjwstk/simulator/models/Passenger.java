@@ -25,11 +25,15 @@ public class Passenger implements DbEntity {
     @JoinColumn(name = "compartment_id", referencedColumnName = "id")
     Compartment compartment;
 
+
+    @Transient
+    int station_id;
+
     public Passenger() {
 
         firstName = String.valueOf(FirstName.VALUES.get(ThreadLocalRandom.current().nextInt(0, 100)));
         lastName = String.valueOf(LastName.VALUES.get(ThreadLocalRandom.current().nextInt(0, 94)));
-//        targetStation = Station.VALUES.get(ThreadLocalRandom.current().nextInt(0, 14));
+        station_id = ThreadLocalRandom.current().nextInt(1, 15);
     }
 
     @Override
@@ -59,6 +63,22 @@ public class Passenger implements DbEntity {
 
     public void setTargetStation(Station targetStation) {
         this.targetStation = targetStation;
+    }
+
+    public long getStation_id() {
+        return station_id;
+    }
+
+    public void setStation_id(int station_id) {
+        this.station_id = station_id;
+    }
+
+    public Compartment getCompartment() {
+        return compartment;
+    }
+
+    public void setCompartment(Compartment compartment) {
+        this.compartment = compartment;
     }
 
     @Override

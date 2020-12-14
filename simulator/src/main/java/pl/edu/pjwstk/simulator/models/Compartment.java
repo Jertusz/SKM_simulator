@@ -16,15 +16,17 @@ public class Compartment implements DbEntity {
     @Column(name = "size")
     int size;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "compartment_id")
     List<Passenger> passenger;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "train_id", referencedColumnName = "id")
     Train train;
 
-    public Compartment() {};
+    public Compartment() {
+    }
+
 
     public void setId(Long id) {
         this.id = id;
