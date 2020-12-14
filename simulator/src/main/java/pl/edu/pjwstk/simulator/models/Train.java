@@ -23,7 +23,8 @@ public class Train implements DbEntity {
     @Column(name = "cooldown")
     int cooldown;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "train_id")
     List<Compartment> compartment;
 
 

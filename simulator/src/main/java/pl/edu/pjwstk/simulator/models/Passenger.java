@@ -5,6 +5,7 @@ import pl.edu.pjwstk.simulator.service.DbEntity;
 import javax.persistence.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+
 @Entity
 @Table(name = "passengers")
 public class Passenger implements DbEntity {
@@ -18,7 +19,11 @@ public class Passenger implements DbEntity {
     @Column(name = "last_name")
     String lastName;
     @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "target_station", referencedColumnName = "id")
     Station targetStation;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "compartment_id", referencedColumnName = "id")
+    Compartment compartment;
 
     public Passenger() {
 
@@ -56,4 +61,8 @@ public class Passenger implements DbEntity {
         this.targetStation = targetStation;
     }
 
+    @Override
+    public String toString() {
+        return getFirstName() + " " + getLastName() + " | " + getTargetStation().getName();
+    }
 }

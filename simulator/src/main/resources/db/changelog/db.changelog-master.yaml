@@ -7,5 +7,3 @@ databaseChangeLog:
       file: db/changelog/data/init-data-insert-trains.yml
   - include:
       file: db/changelog/data/init-data-insert-compartments.yml
-  - include:
-      file: db/changelog/data/add-compartments-trains-data.yml

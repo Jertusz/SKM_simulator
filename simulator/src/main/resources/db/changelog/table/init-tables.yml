@@ -78,6 +78,13 @@ databaseChangeLog:
                   type: INT
                   constraints:
                     nullable: false
+              - column:
+                  name: train_id
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: compartment_train_id_fkey
+                    references: trains(id)
         - createTable:
             tableName: passengers
             columns:
@@ -106,40 +113,6 @@ databaseChangeLog:
                     nullable: false
                     foreignKeyName: passenger_station_id_fkey
                     references: stations(id)
-  - changeSet:
-      id: 2020_12_13-compartment-trains-relation
-      author: jedrzej.szadejko
-      preConditions:
-        - onFail: MARK_RAN
-          not:
-            tableExists:
-              tableName: trains_compartment
-        - onFail: MARK_RAN
-          not:
-            tableExists:
-              tableName: compartments_passenger
-
-      changes:
-        - createTable:
-            tableName: trains_compartment
-            columns:
-              - column:
-                  name: train_id
-                  type: INT
-                  constraints:
-                    nullable: false
-                    foreignKeyName: train_id_fkey
-                    references: trains(id)
-              - column:
-                  name: compartment_id
-                  type: INT
-                  constraints:
-                    nullable: false
-                    foreignKeyName: train_compartment_id_fkey
-                    references: compartments(id)
-        - createTable:
-            tableName: compartments_passenger
-            columns:
               - column:
                   name: compartment_id
                   type: INT
@@ -147,10 +120,3 @@ databaseChangeLog:
                     nullable: false
                     foreignKeyName: passenger_compartment_id_fkey
                     references: compartments(id)
-              - column:
-                  name: passenger_id
-                  type: INT
-                  constraints:
-                    nullable: false
-                    foreignKeyName: compartment_passenger_id_fkey
-                    references: passengers(id)

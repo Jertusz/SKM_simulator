@@ -15,7 +15,7 @@ public class CompartmentTests {
 
     @Before
     public void init() {
-        comp = new Compartment(6);
+//        comp = new Compartment(6);
     }
 
     @Test
