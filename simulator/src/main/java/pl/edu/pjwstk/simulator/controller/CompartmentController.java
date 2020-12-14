@@ -24,6 +24,7 @@ public class CompartmentController extends CrudController<Compartment> {
             var payload = new LinkedHashMap<String, Object>();
             payload.put("id", compartment.getId());
             payload.put("size", compartment.getSize());
+            payload.put("train_id", compartment.getTrain().getId());
             payload.put("passengers", compartment.getPassengerList().stream().map(Passenger::toString));
 
             return payload;

@@ -10,7 +10,7 @@ import java.util.List;
 @Table(name = "compartments")
 public class Compartment implements DbEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
     @Column(name = "size")
@@ -51,4 +51,11 @@ public class Compartment implements DbEntity {
         return size;
     }
 
+    public Train getTrain() {
+        return train;
+    }
+
+    public void setTrain(Train train) {
+        this.train = train;
+    }
 }

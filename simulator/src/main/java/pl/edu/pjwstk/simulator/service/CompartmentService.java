@@ -29,6 +29,7 @@ public class CompartmentService extends CrudService<Compartment>{
         if (compartmentInDb.isPresent()) {
             Compartment dbEntity = compartmentInDb.get();
             dbEntity.setSize(fallbackIfNull(updateEntity.getSize(), dbEntity.getSize()));
+            dbEntity.setTrain(fallbackIfNull(updateEntity.getTrain(), dbEntity.getTrain()));
             Compartment insertedCompartment = repository.save(dbEntity);
 
             return insertedCompartment;
