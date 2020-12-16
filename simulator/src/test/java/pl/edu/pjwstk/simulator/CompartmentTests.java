@@ -3,6 +3,9 @@ package pl.edu.pjwstk.simulator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import pl.edu.pjwstk.simulator.models.Compartment;
 import pl.edu.pjwstk.simulator.models.Passenger;
 import pl.edu.pjwstk.simulator.models.Station;
@@ -10,6 +13,8 @@ import pl.edu.pjwstk.simulator.models.Station;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class CompartmentTests {
     Compartment comp;
 

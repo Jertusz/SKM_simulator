@@ -60,7 +60,7 @@ public abstract class CrudController<T extends DbEntity> {
     public ResponseEntity<Void> add(@RequestBody T t) {
         try {
             service.createOrUpdate(t);
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

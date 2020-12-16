@@ -18,7 +18,15 @@ public class Station implements DbEntity {
         return id;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
