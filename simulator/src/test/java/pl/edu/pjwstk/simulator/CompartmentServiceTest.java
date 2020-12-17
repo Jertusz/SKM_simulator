@@ -50,7 +50,7 @@ public class CompartmentServiceTest {
     }
 
     @Test
-    public void train_is_modified_correctly() {
+    public void compartment_is_modified_correctly() {
         var compartment = Mockito.spy(new Compartment());
         compartment.setId(1L);
         Mockito.when(compartment.getId()).thenReturn(1L);
@@ -60,5 +60,29 @@ public class CompartmentServiceTest {
 
         Mockito.verify(compartmentRepository).findById(1L);
         Mockito.verify(compartmentRepository).save(compartment);
+    }
+
+
+    // Tests for parametrized methods from CrudService
+    @Test
+    public void getCompartmentByID() {
+        compartmentService.getById(1L);
+        Mockito.verify(compartmentRepository).findById(1L);
+    }
+
+    @Test
+    public void deleteCompartmentByID() {
+        Compartment compartment = new Compartment();
+        Optional<Compartment> compartmentOptional = Optional.of(compartment);
+        Mockito.when(compartmentRepository.findById(1L)).thenReturn(compartmentOptional);
+        compartmentService.delete(1L);
+        Mockito.verify(compartmentRepository).findById(1L);
+        Mockito.verify(compartmentRepository).delete(compartmentOptional.get());
+    }
+
+    @Test
+    public void getAllCompartments() {
+        compartmentService.getAll();
+        Mockito.verify(compartmentRepository).findAll();
     }
 }

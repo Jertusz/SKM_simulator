@@ -30,6 +30,7 @@ public class TrainServiceTest {
     @MockBean
     StationRepository stationRepository;
 
+
     TrainService trainService;
 
     @Before
@@ -71,5 +72,29 @@ public class TrainServiceTest {
 
         Mockito.verify(trainRepository).findById(1L);
         Mockito.verify(trainRepository).save(train);
+    }
+
+
+    // Tests for parametrized methods from CrudService
+    @Test
+    public void getTrainByID() {
+        trainService.getById(1L);
+        Mockito.verify(trainRepository).findById(1L);
+    }
+
+    @Test
+    public void deleteTrainByID() {
+        Train train = new Train();
+        Optional<Train> trainOptional = Optional.of(train);
+        Mockito.when(trainRepository.findById(1L)).thenReturn(trainOptional);
+        trainService.delete(1L);
+        Mockito.verify(trainRepository).findById(1L);
+        Mockito.verify(trainRepository).delete(trainOptional.get());
+    }
+
+    @Test
+    public void getAllTrains() {
+        trainService.getAll();
+        Mockito.verify(trainRepository).findAll();
     }
 }

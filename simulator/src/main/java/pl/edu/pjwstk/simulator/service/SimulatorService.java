@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import pl.edu.pjwstk.simulator.models.Compartment;
 import pl.edu.pjwstk.simulator.models.Passenger;
 import pl.edu.pjwstk.simulator.models.Train;
-import pl.edu.pjwstk.simulator.repository.CompartmentRepository;
 import pl.edu.pjwstk.simulator.repository.PassengerRepository;
 import pl.edu.pjwstk.simulator.repository.StationRepository;
 import pl.edu.pjwstk.simulator.repository.TrainRepository;
@@ -16,13 +15,11 @@ import java.util.concurrent.ThreadLocalRandom;
 @Service
 public class SimulatorService {
     private final TrainRepository trainRepository;
-    private final CompartmentRepository compartmentRepository;
     private final StationRepository stationRepository;
     private final PassengerRepository passengerRepository;
 
-    public SimulatorService(TrainRepository trainRepository, CompartmentRepository compartmentRepository, StationRepository stationRepository, PassengerRepository passengerRepository) {
+    public SimulatorService(TrainRepository trainRepository, StationRepository stationRepository, PassengerRepository passengerRepository) {
         this.trainRepository = trainRepository;
-        this.compartmentRepository = compartmentRepository;
         this.stationRepository = stationRepository;
         this.passengerRepository = passengerRepository;
     }
@@ -62,7 +59,8 @@ public class SimulatorService {
             int passengersInCompartment = compartment.getPassengerList().size();
             int freeSpace = compartment.getSize() - passengersInCompartment;
             if (freeSpace != 0) {
-                for (int i = 0; i < freeSpace; i++) {
+                int i = 0;
+                while (i < freeSpace && numOfPassengers > 0) {
                     Passenger passenger = new Passenger();
                     passenger.setTargetStation(stationRepository.getOne(passenger.getStation_id()));
                     passenger.setCompartment(compartment);
@@ -74,7 +72,7 @@ public class SimulatorService {
     }
 
     public void removePassengers(Train train) {
-        List<Passenger> passengersToDelete = new ArrayList();
+        List<Passenger> passengersToDelete = new ArrayList<>();
         for (Compartment compartment : train.getCompartmentList()) {
             for (Passenger passenger : compartment.getPassengerList()) {
                 if (passenger.getTargetStation().equals(train.getStation())) {
