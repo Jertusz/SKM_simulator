@@ -32,9 +32,6 @@ public class TrainServiceTest {
 
     TrainService trainService;
 
-    @MockBean
-    Train trainMock;
-
     @Before
     public void setup() {
         trainService = new TrainService(trainRepository, compartmentRepository, stationRepository);
