@@ -1,27 +1,32 @@
 package pl.edu.pjwstk.simulator.models;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import pl.edu.pjwstk.simulator.service.DbEntity;
 
-public enum Station {
-    GDANSK_GLOWNY,
-    GDANSK_STOCZNIA,
-    GDANSK_POLITECHNIKA,
-    GDANSK_WRZESZCZ,
-    GDANSK_ZASPA,
-    GDANSK_PRZYMORZE,
-    GDANSK_OLIWA,
-    GDANSK_ZABIANKA,
-    SOPOT_WYSCIGI,
-    SOPOT,
-    SOPOT_KAMIENNY_POTOK,
-    GDYNIA_ORLOWO,
-    GDYNIA_REDLOWO,
-    GDYNIA_WZGORZE_SW_MAKSYMILIANA,
-    GDYNIA_GLOWNA;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "stations")
+public class Station implements DbEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public static final List<Station> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
+    private String name;
 
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }

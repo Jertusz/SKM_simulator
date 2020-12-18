@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 public class ClientSideController {
 
     private final String trainsList = "http://simulator:9000/trains";
+    private final String compartmentList = "http://simulator:9000/compartments";
 
     @GetMapping("/trains")
     public ResponseEntity getTrains() {
@@ -24,9 +25,9 @@ public class ClientSideController {
         return template.getForEntity(trainsList + '/' + id, String.class);
     }
 
-    @GetMapping("/trains/{id}/{compartment}")
-    public ResponseEntity getTrains(@PathVariable("id") int id, @PathVariable("compartment") int compartment) {
+    @GetMapping("/compartments/{compartment}")
+    public ResponseEntity getCompartment(@PathVariable("compartment") int compartment) {
         RestTemplate template = new RestTemplate();
-        return template.getForEntity(trainsList + '/' + id + '/' + compartment, String.class);
+        return template.getForEntity(compartmentList + '/' + compartment, String.class);
     }
 }
