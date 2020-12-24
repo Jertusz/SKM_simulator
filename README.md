@@ -1,4 +1,13 @@
-# jaz_first
+# SKM Simulator
+
+## Description  
+
+This simulates very basic subway behaviour such as:
+- Moving the trains
+- Adding trains / adding compartments / adding passengers
+- Removing passengers upon reaching destination
+- Passengers are generated and removed automatically, there is no CRUD for them
+- All data is stored in a mysql database using liquibase
 
 ## Objectives
 
