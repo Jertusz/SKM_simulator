@@ -53,7 +53,7 @@ public class SimulatorServiceTest {
     }
 
     @Test
-    public void move_works_properly() {
+    public void moveWorksProperly() {
 
         List<Station> stations = new ArrayList<>();
 

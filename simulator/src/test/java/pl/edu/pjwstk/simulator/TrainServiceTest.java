@@ -39,7 +39,7 @@ public class TrainServiceTest {
     }
 
     @Test
-    public void train_without_id_is_added_correctly() {
+    public void addTrainWithoutID() {
         var train = new Train();
         var station = new Station();
         station.setName("Test");
@@ -49,7 +49,7 @@ public class TrainServiceTest {
     }
 
     @Test
-    public void train_with_id_is_added_correctly() {
+    public void addTrainWithID() {
         var train = new Train();
         var station = new Station();
         station.setName("Test");
@@ -60,7 +60,7 @@ public class TrainServiceTest {
     }
 
     @Test
-    public void train_is_modified_correctly() {
+    public void modifyTrain() {
         var train = Mockito.spy(new Train());
         var station = new Station();
         station.setName("Test");

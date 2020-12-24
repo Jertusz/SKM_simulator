@@ -17,7 +17,6 @@ import pl.edu.pjwstk.simulator.models.Station;
 import pl.edu.pjwstk.simulator.models.Train;
 import pl.edu.pjwstk.simulator.service.CompartmentService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

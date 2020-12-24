@@ -34,14 +34,14 @@ public class CompartmentServiceTest {
     }
 
     @Test
-    public void compartment_without_id_is_added_correctly() {
+    public void addCompartmentWithoutID() {
         var compartment = new Compartment();
         compartmentService.createOrUpdate(compartment);
         Mockito.verify(compartmentRepository).save(compartment);
     }
 
     @Test
-    public void compartment_with_id_is_added_correctly() {
+    public void addCompartmentWithID() {
         var compartment = new Compartment();
         compartment.setId(1L);
         Mockito.when(compartmentRepository.findById(1L)).thenReturn(Optional.empty());
@@ -50,7 +50,7 @@ public class CompartmentServiceTest {
     }
 
     @Test
-    public void compartment_is_modified_correctly() {
+    public void modifyCompartment() {
         var compartment = Mockito.spy(new Compartment());
         compartment.setId(1L);
         Mockito.when(compartment.getId()).thenReturn(1L);

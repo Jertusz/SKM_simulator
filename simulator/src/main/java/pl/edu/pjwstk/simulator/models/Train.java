@@ -3,8 +3,7 @@ package pl.edu.pjwstk.simulator.models;
 import pl.edu.pjwstk.simulator.service.DbEntity;
 
 import javax.persistence.*;
-import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.List;
 
 @Entity
 @Table(name = "trains")
