@@ -48,3 +48,19 @@ Przerobic nasz symulator SKM tak, by:
 
 termin oddania pracy: 22.12.2020*
 ilosc punktow do zdobycia: 10 + 2*
+
+
+Czesc trzecia:
+Celem tego etapu jest zabezpieczenie naszej aplikacji przed nieautoryzowanym uzytkowaniem.
+
+1. Dodaj do bazy danych nowego changeseta, ktory pomoze nam zrealizowac poprwanie dzialajaca autentykacje i autoryzacje. Informacje, ktore powinnismy przechowywac o uzytkownikach to przynamniej, login, zakodowane haslo oraz jego uprawnienia.
+2. Nasza aplikacja powinna rozrozniac przynajmniej 4 sytuacje obslugi uzytkownikow:
+   a) nieznany uzytkownik - brak dostepu do aplikacji
+   b) znany, zwykly uzytkownik - dostep do aplikacji ograniczony do pobierania informacji
+   c) znany, uprzywilejowany uzytkownik - j.w. + dostep do endpointow modyfikujacych dane pociagow, przedzialow itp.
+   d) admin - j.w. + mozliwosc zarzadzania uzytkownikami
+3. Na potrzeby uzywania aplikacji przez administratora, dodaj Controller pozwalajacy na rejestracje nowych uzytkownikow, jak i modyfikacje ich uprawnien i
+   usuwanie ich.
+4. Wykorzystaj JWT do autentykacji i autoryzacji uzytkownikow.
+
+Termin: 26.01.2021 23:59, max 10/10
