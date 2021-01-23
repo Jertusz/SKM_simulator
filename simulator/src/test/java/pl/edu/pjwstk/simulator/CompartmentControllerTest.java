@@ -15,6 +15,7 @@ import pl.edu.pjwstk.simulator.models.Compartment;
 import pl.edu.pjwstk.simulator.models.Passenger;
 import pl.edu.pjwstk.simulator.models.Station;
 import pl.edu.pjwstk.simulator.models.Train;
+import pl.edu.pjwstk.simulator.security.UserDetailsServiceImpl;
 import pl.edu.pjwstk.simulator.service.CompartmentService;
 
 import java.util.List;
@@ -33,6 +34,9 @@ public class CompartmentControllerTest {
 
     @MockBean
     CompartmentService compartmentService;
+
+    @MockBean
+    UserDetailsServiceImpl userDetailsService;
 
 
     @Test
