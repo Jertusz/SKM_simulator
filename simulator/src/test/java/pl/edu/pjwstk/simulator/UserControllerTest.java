@@ -107,4 +107,11 @@ public class UserControllerTest {
         Mockito.verify(userService).createOrUpdate(Mockito.any(User.class));
         Assert.assertEquals("", user.getAuthority());
     }
+
+    @Test
+    public void addDeleteModifyRoleForNonExistingUser() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/1/role/ROLE_USER").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isNotFound());
+        mockMvc.perform(MockMvcRequestBuilders.delete("/users/1/role/ROLE_USER").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isNotFound());
+        mockMvc.perform(MockMvcRequestBuilders.put("/users/1/role/ROLE_USER").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isNotFound());
+    }
 }
