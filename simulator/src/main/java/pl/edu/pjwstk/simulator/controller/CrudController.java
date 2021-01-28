@@ -41,6 +41,7 @@ public abstract class CrudController<T extends DbEntity> {
 
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

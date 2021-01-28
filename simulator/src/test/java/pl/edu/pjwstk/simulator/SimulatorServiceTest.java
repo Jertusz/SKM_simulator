@@ -123,7 +123,7 @@ public class SimulatorServiceTest {
         Mockito.when(compartmentOne.getPassengerList()).thenReturn(new ArrayList<>());
         Mockito.when(compartmentTwo.getPassengerList()).thenReturn(new ArrayList<>());
         simulatorService.addPassengers(trainOne);
-        Mockito.verify(passengerRepository, Mockito.atMost(7)).save(any(Passenger.class));
+        Mockito.verify(passengerRepository, Mockito.atMost(8)).save(any(Passenger.class));
     }
 
     @Test
