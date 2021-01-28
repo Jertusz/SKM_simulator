@@ -14,7 +14,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static pl.edu.pjwstk.simulator.security.SecurityConstants.HEADER_STRING;
 import static pl.edu.pjwstk.simulator.security.SecurityConstants.TOKEN_PREFIX;

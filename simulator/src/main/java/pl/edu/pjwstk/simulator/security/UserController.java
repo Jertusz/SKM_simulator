@@ -12,7 +12,7 @@ import java.util.function.Function;
 
 @RestController
 @RequestMapping("/users")
-public class UserController extends  CrudController<User> {
+public class UserController extends CrudController<User> {
     UserService userService;
 
     protected UserController(UserService service) {

@@ -14,17 +14,9 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import pl.edu.pjwstk.simulator.controller.CompartmentController;
-import pl.edu.pjwstk.simulator.models.Compartment;
-import pl.edu.pjwstk.simulator.models.Passenger;
-import pl.edu.pjwstk.simulator.models.Station;
-import pl.edu.pjwstk.simulator.models.Train;
 import pl.edu.pjwstk.simulator.security.User;
 import pl.edu.pjwstk.simulator.security.UserController;
 import pl.edu.pjwstk.simulator.security.UserService;
-import pl.edu.pjwstk.simulator.service.CompartmentService;
-
-import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
