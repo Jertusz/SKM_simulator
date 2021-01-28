@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -15,13 +16,13 @@ import pl.edu.pjwstk.simulator.models.Compartment;
 import pl.edu.pjwstk.simulator.models.Passenger;
 import pl.edu.pjwstk.simulator.models.Station;
 import pl.edu.pjwstk.simulator.models.Train;
-import pl.edu.pjwstk.simulator.security.UserDetailsServiceImpl;
 import pl.edu.pjwstk.simulator.service.CompartmentService;
 
 import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@WithMockUser(authorities = {"ROLE_ADMIN"})
 @RunWith(SpringRunner.class)
 @WebMvcTest(CompartmentController.class)
 public class CompartmentControllerTest {
@@ -34,9 +35,6 @@ public class CompartmentControllerTest {
 
     @MockBean
     CompartmentService compartmentService;
-
-    @MockBean
-    UserDetailsServiceImpl userDetailsService;
 
 
     @Test

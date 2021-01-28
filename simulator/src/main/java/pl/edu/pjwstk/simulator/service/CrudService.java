@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public abstract class CrudService<T extends DbEntity> {
-    JpaRepository<T, Long> repository;
+    public JpaRepository<T, Long> repository;
 
     public CrudService(JpaRepository<T, Long> repository) {
         this.repository = repository;
