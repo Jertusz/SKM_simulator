@@ -1,15 +1,12 @@
 package pl.edu.pjwstk.simulator.security;
 
-import liquibase.pro.packaged.U;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.pjwstk.simulator.controller.CrudController;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -23,12 +20,12 @@ public class UserController extends  CrudController<User> {
         this.userService = service;
     }
 
-    // ALL AUTH MODIFICATION
-    @PostMapping("/{id}/auth/{auth}")
-    public ResponseEntity addAuth(@PathVariable Long id, @PathVariable String auth) {
+    // ALL ROLES MODIFICATION
+    @PostMapping("/{id}/role/{role}")
+    public ResponseEntity addRole(@PathVariable Long id, @PathVariable String role) {
         try {
             User user = userService.getById(id);
-            user.addAuthority(() -> auth);
+            user.addAuthority(() -> role);
             userService.createOrUpdate(user);
             return new ResponseEntity(HttpStatus.ACCEPTED);
         } catch (Exception e) {
@@ -36,11 +33,11 @@ public class UserController extends  CrudController<User> {
         }
     }
 
-    @PutMapping("/{id}/auth/{auth}")
-    public ResponseEntity setAuth(@PathVariable Long id, @PathVariable String auth) {
+    @PutMapping("/{id}/role/{role}")
+    public ResponseEntity setRole(@PathVariable Long id, @PathVariable String role) {
         try {
             User user = userService.getById(id);
-            user.setStringAuthority(auth);
+            user.setStringAuthority(role);
             userService.createOrUpdate(user);
             return new ResponseEntity(HttpStatus.ACCEPTED);
         } catch (Exception e) {
@@ -49,11 +46,11 @@ public class UserController extends  CrudController<User> {
 
     }
 
-    @DeleteMapping("/{id}/auth/{auth}")
-    public ResponseEntity deleteAuth(@PathVariable Long id, @PathVariable String auth) {
+    @DeleteMapping("/{id}/role/{role}")
+    public ResponseEntity deleteRole(@PathVariable Long id, @PathVariable String role) {
         try {
             User user = userService.getById(id);
-            user.removeAuthority(() -> auth);
+            user.removeAuthority(() -> role);
             userService.createOrUpdate(user);
             return new ResponseEntity(HttpStatus.ACCEPTED);
         } catch (Exception e) {

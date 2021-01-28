@@ -34,7 +34,7 @@ public class UserService extends CrudService<User> implements UserDetailsService
     public User createOrUpdate(User updateEntity) {
         // Creating user
         User userInDb = loadUserByUsername(updateEntity.getUsername());
-        if (loadUserByUsername(updateEntity.getUsername()) == null) {
+        if (userInDb == null) {
             GrantedAuthority defaultAuth = () -> "ROLE_USER";
             String encodedPassword = passwordEncoder.encode(updateEntity.getPassword());
 
